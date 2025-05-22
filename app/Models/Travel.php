@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Travel extends Model
 {
-    use HasFactory, Sluggable,HasUuids;
+    use HasFactory, Sluggable, HasUuids;
     protected $table = 'travels';
-    protected $fillable = ['is_public', 'name', 'description', 'number_of_days'];
+    protected $fillable = ['is_public', 'name', 'slug', 'description', 'number_of_days'];
 
     public function tours(): HasMany
     {
@@ -39,6 +39,4 @@ class Travel extends Model
             get: fn($value, $attributes) => $attributes['number_of_days'] - 1
         );
     }
-
-
 }
