@@ -7,10 +7,11 @@ use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 
-use function Laravel\Prompts\password;
+use Illuminate\Validation\Rules\Password;
+
+
 
 class CreateUserCommand extends Command
 {
