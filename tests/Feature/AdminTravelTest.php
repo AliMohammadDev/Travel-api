@@ -55,8 +55,8 @@ class AdminTravelTest extends TestCase
 
         $response = $this->get('/api/v1/travels');
         $response->assertJsonFragment(['name'=>'Travel name']);
-
-
-
     }
+
+
+
 }
