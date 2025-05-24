@@ -15,7 +15,7 @@ class Travel extends Model
 
     protected $table = 'travels';
 
-    protected $fillable = ['is_public', 'name', 'slug', 'description', 'number_of_days'];
+    protected $fillable = ['is_public', 'name', 'slug', 'description', 'number_of_days','number_of_nights'];
 
     public function tours(): HasMany
     {

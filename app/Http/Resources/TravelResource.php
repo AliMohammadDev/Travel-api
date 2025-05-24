@@ -2,16 +2,19 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Travel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+
+/**
+ * @mixin Travel
+ * @property int $number_of_nights
+ */
+
 class TravelResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
+
     public function toArray(Request $request): array
     {
         return [
