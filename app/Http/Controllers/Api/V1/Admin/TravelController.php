@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TravelRequest;
 use App\Http\Resources\TravelResource;
 use App\Models\Travel;
-use Illuminate\Http\Request;
 
 class TravelController extends Controller
 {
@@ -20,6 +19,7 @@ class TravelController extends Controller
     public function update(Travel $travel, TravelRequest $request)
     {
         $travel->update($request->validated());
+
         return new TravelResource($travel);
     }
 }

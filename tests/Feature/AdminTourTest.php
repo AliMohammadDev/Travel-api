@@ -7,12 +7,12 @@ use App\Models\Travel;
 use App\Models\User;
 use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class AdminTourTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * A basic feature test example.
      */
@@ -21,7 +21,7 @@ class AdminTourTest extends TestCase
 
         $travel = Travel::factory()->create();
 
-        $response = $this->postJson('/api/v1/admin/travels/' . $travel->slug . '/tours');
+        $response = $this->postJson('/api/v1/admin/travels/'.$travel->slug.'/tours');
 
         $response->assertStatus(401);
     }
@@ -35,8 +35,7 @@ class AdminTourTest extends TestCase
 
         $travel = Travel::factory()->create();
 
-
-        $response = $this->actingAs($user)->postJson('/api/v1/admin/travels/' . $travel->id . '/tours');
+        $response = $this->actingAs($user)->postJson('/api/v1/admin/travels/'.$travel->id.'/tours');
         $response->assertStatus(403);
     }
 
@@ -47,21 +46,21 @@ class AdminTourTest extends TestCase
         $user->roles()->attach(Role::where('name', 'admin')->value('id'));
         $travel = Travel::factory()->create();
 
-        $response = $this->actingAs($user)->postJson('/api/v1/admin/travels/' . $travel->id . '/tours', [
-            'name' => 'Tour name'
+        $response = $this->actingAs($user)->postJson('/api/v1/admin/travels/'.$travel->id.'/tours', [
+            'name' => 'Tour name',
         ]);
         $response->assertStatus(422);
 
-        $response = $this->actingAs($user)->postJson('/api/v1/admin/travels/' . $travel->id . '/tours', [
+        $response = $this->actingAs($user)->postJson('/api/v1/admin/travels/'.$travel->id.'/tours', [
             'name' => 'Tour name',
             'starting_date' => now()->toDateString(),
             'ending_date' => now()->addDay()->toDateString(),
-            'price' => 123.45
+            'price' => 123.45,
         ]);
 
         $response->assertStatus(201);
 
-        $response = $this->get('/api/v1/travels/' . $travel->slug . '/tours');
+        $response = $this->get('/api/v1/travels/'.$travel->slug.'/tours');
         $response->assertJsonFragment(['name' => 'Tour name']);
     }
 }

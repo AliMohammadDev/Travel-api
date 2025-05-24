@@ -6,8 +6,7 @@ use App\Models\Travel;
 
 class TravelObserver
 {
-
-     public function creating(Travel $travel): void
+    public function creating(Travel $travel): void
     {
         // $travel->slug = str($travel->name)->slug();
     }

@@ -23,11 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::get('/travels', [TravelController::class, 'index']);
 Route::get('/travels/{travel:slug}/tours', [TourController::class, 'index']);
-
-
 
 Route::prefix('admin')
     ->middleware(['auth:sanctum'])
@@ -38,10 +35,7 @@ Route::prefix('admin')
             Route::post('travels/{travel}/tours', [AdminTourController::class, 'store']);
         });
         Route::put('travels/{travel}', [AdminTravelController::class, 'update'])
-        ->middleware('role:editor');
+            ->middleware('role:editor');
     });
-
-
-
 
 Route::post('/login', LoginController::class);
